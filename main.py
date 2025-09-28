@@ -75,7 +75,7 @@ def reinforce(k):
         oL, hL, h1L = forwardPropagation(it)
         #print(oL)
         reward = 0  
-        if it[0]<.5 and it[0] > 0 and oL > 2.3:
+        if it[0]<.3 and it[0] > 0 and oL > 2.3:
             reward = oL[0]*2
         elif oL > 5:
             reward = (4-oL[0])
@@ -139,15 +139,21 @@ def learn(num, bias = True):
     sumB = [np.zeros(h), np.zeros(h1), np.zeros(o)]
 learn(300000)
 
+def superTest():
+    for i in range(1,11):
+        for j in range(1,6):
+            test(.1*i, j)
+
 pyplot.plot(errList)
 pyplot.show()
-
-test(.1, 5)
-test(.8, 5)
-test(1, 5)
-test(.1, 3)
-test(.1, 1)
-test(.8, 3)
+#
+#test(.1, 5)
+#test(.8, 5)
+#test(1, 5)
+#test(.1, 3)
+#test(.1, 1)
+#test(.8, 3)
+superTest()
 
 
 for i in range(1):
@@ -165,10 +171,11 @@ for i in range(1):
         it, ot = genInO()
         o, h, h1 = forwardPropagation(it)
         #print (it, ot, o)
-    test(.1, 5)
-    test(.8, 5)
-    test(1, 5)
-    test(.1, 3)
-    test(.1, 1)
-    test(.8, 3)
+    superTest()
+#    test(.1, 5)
+#    test(.8, 5)
+#    test(1, 5)
+#    test(.1, 3)
+#    test(.1, 1)
+#    test(.8, 3)
 
