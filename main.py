@@ -25,6 +25,8 @@ sum = {"W1":np.zeros_like(model["W1"]),"W2":np.zeros_like(model["W2"]),"W3":np.z
 sumB = [np.zeros(h), np.zeros(h1), np.zeros(o)]
 
 
+print("Ausgabe Format: [Eingaben] richtige Ausgabe [von KI generierte Ausgabe]")
+
 def forwardPropagation(input):
     h = np.dot(input, model["W1"]) + biases[0]
     h[h < 0] *= 0.01
@@ -137,6 +139,8 @@ def learn(num, bias = True):
             sumB = [np.zeros(h), np.zeros(h1), np.zeros(o)]
     sum = {"W1":np.zeros_like(model["W1"]),"W2":np.zeros_like(model["W2"]),"W3":np.zeros_like(model["W3"]),}
     sumB = [np.zeros(h), np.zeros(h1), np.zeros(o)]
+
+# primäres Lernen
 learn(300000)
 
 def superTest():
@@ -144,38 +148,27 @@ def superTest():
         for j in range(1,6):
             test(.1*i, j)
 
-pyplot.plot(errList)
-pyplot.show()
-#
-#test(.1, 5)
-#test(.8, 5)
-#test(1, 5)
-#test(.1, 3)
-#test(.1, 1)
-#test(.8, 3)
+#pyplot.plot(errList)
+#pyplot.show()
+
 superTest()
 
 
 for i in range(1):
     print("reinforcing...")
-    
+
+    # Reduzierung des Biases
     for j in range(30):
         reinforce(104)
-        learn(102, False)
-    #learn(300000)
+        learn(102, False) # 102 für Anzahl von Iterationen. 102 um nicht über Batches zu denken, False für kein Bias
+
+    #Testen von anderen Methoden
+    #learn(6000, False)
     
-    pyplot.plot(errList)
-    pyplot.show()
+    #pyplot.plot(errList)
+    #pyplot.show()
     
-    for i in range(5):
-        it, ot = genInO()
-        o, h, h1 = forwardPropagation(it)
-        #print (it, ot, o)
+
     superTest()
-#    test(.1, 5)
-#    test(.8, 5)
-#    test(1, 5)
-#    test(.1, 3)
-#    test(.1, 1)
-#    test(.8, 3)
+
 
