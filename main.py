@@ -26,7 +26,7 @@ sumB = [np.zeros(h), np.zeros(h1), np.zeros(o)]
 
 
 print("Ausgabe Format: [Eingaben] richtige Ausgabe [von KI generierte Ausgabe]")
-
+print("learning...")
 def forwardPropagation(input):
     h = np.dot(input, model["W1"]) + biases[0]
     h[h < 0] *= 0.01
@@ -142,7 +142,7 @@ def learn(num, bias = True):
 
 # primäres Lernen
 learn(300000)
-
+print("Vor Reinforcement")
 def superTest():
     for i in range(1,11):
         for j in range(1,6):
@@ -168,7 +168,7 @@ for i in range(1):
     #pyplot.plot(errList)
     #pyplot.show()
     
-
+    print("Nach Reinforcement")
     superTest()
 
 
