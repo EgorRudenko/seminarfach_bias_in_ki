@@ -9,6 +9,8 @@ biasCoeff = .5
 
 np.random.seed(2)
 
+
+
 alpha = .01
 #model = {"W1":[], "W2":[], "W3":[]}
 model = dict()
@@ -111,6 +113,7 @@ def test(a, b):
     ot = b
     o, h, h1 = forwardPropagation(it)
     print(it, ot, o)
+    return float(abs(o-ot))
 
 
 def learn(num, bias = True):
@@ -143,15 +146,22 @@ def learn(num, bias = True):
 # primäres Lernen
 learn(300000)
 print("Vor Reinforcement")
-def superTest():
+def superTest(plot=False):
+    data = []
     for i in range(1,11):
+        data.append(0)
         for j in range(1,6):
-            test(.1*i, j)
+            data[i-1]+=test(.1*i, j)
+    if plot:
+        #print("Data: ", data)
+        pyplot.ylim(0,5)
+        pyplot.bar(range(1,11), data)
+        pyplot.show()
 
 #pyplot.plot(errList)
 #pyplot.show()
 
-superTest()
+superTest(plot=True)
 
 
 for i in range(1):
@@ -169,6 +179,6 @@ for i in range(1):
     #pyplot.show()
     
     print("Nach Reinforcement")
-    superTest()
+    superTest(plot=True)
 
 
