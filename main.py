@@ -143,7 +143,7 @@ def learn(num, bias = True):
     sum = {"W1":np.zeros_like(model["W1"]),"W2":np.zeros_like(model["W2"]),"W3":np.zeros_like(model["W3"]),}
     sumB = [np.zeros(h), np.zeros(h1), np.zeros(o)]
 
-# primäres Lernen
+# primaeres Lernen
 learn(300000)
 print("Vor Reinforcement")
 def superTest(plot=False):
@@ -170,7 +170,7 @@ for i in range(1):
     # Reduzierung des Biases
     for j in range(30):
         reinforce(104)
-        learn(102, False) # 102 für Anzahl von Iterationen. 102 um nicht über Batches zu denken, False für kein Bias
+        learn(102, False) # 102 fuer Anzahl von Iterationen. 102 um nicht ueber Batches zu denken, False fuer kein Bias
 
     #Testen von anderen Methoden
     #learn(6000, False)
